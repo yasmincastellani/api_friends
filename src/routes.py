@@ -1,91 +1,70 @@
 from fastapi import APIRouter
-from pydantic import BaseModel
+from src.models.character import Character
+from src.db.database import SQLiteConnector
+from typing import List
 
 routes = APIRouter()
 
+connector = SQLiteConnector()
 
-class Character(BaseModel):
-    name: str
-    age: int
-    sex: str
-    season: int
-    ocupation: str
-    joke: str
+
+@routes.get("/all", response_model=List[Character], response_description="Esse endpoint retorna todos os personagens", tags=["All"])
+def all():
+    connector.connect()
+    characters = connector.read_all()
+    connector.close()
+    return characters
 
 
 @routes.get("/howyoudoin", response_model=Character, response_description="Esse endpoint retorna características do Joey", tags=["Joey"])
 def joey():
-    j = Character(
-        name="Joey Tribbiani",
-        age=28,
-        sex="Masculino",
-        ocupation="ator",
-        season=3,
-        joke="How you doing? 😏"
-    )
-    return j
+    connector.connect()
+    character = connector.get_by_name("Joey Tribbiani")
+    print(character)
+    connector.close()
+    return character
 
 
 @routes.get("/unagi", response_model=Character, response_description="Esse endpoint retorna características do Ross", tags=["Ross"])
 def ross():
-    r = Character(
-        name="Ross Geller",
-        age=31,
-        sex="Masculino",
-        ocupation="Paleontólogo e professor universitário",
-        season=5,
-        joke="Nós estávamos dando um tempo 😡"
-    )
-    return r
+    connector.connect()
+    character = connector.get_by_name("Ross Geller")
+    print(character)
+    connector.close()
+    return character
 
 
 @routes.get("/rachelgreen", response_model=Character, response_description="Esse endpoint retorna características da Rachel", tags=["Rachel"])
 def rachel():
-    r = Character(
-        name="Rachel Green",
-        age=28,
-        sex="Feminino",
-        ocupation="Executiva de moda na Ralph Lauren",
-        season=6,
-        joke="Vou buscar um desses…desses…empregos 💼"
-    )
-    return r
+    connector.connect()
+    character = connector.get_by_name("Rachel Green")
+    print(character)
+    connector.close()
+    return character
 
 
 @routes.get("/couldibemorefunny", response_model=Character, response_description="Esse endpoint retorna características do Chandler", tags=["Chandler"])
 def chandler():
-    c = Character(
-        name="Chandler Bing",
-        age=29,
-        sex="Masculino",
-        ocupation="Executivo em processamento de dados",
-        season=6,
-        joke="Na verdade, é Miss Chanandler Bong 😌"
-    )
-    return c
-
+    connector.connect()
+    character = connector.get_by_name("Chandler Bing")
+    print(character)
+    connector.close()
+    return character
+    
 
 @routes.get("/cleaningfreak", response_model=Character, response_description="Esse endpoint retorna características da Monica", tags=["Monica"])
 def monica():
-    m = Character(
-        name="Monica Geller",
-        age=30,
-        sex="Feminino",
-        ocupation="Chef de cozinha",
-        season=5,
-        joke="Você faz parte do meu time! E meu time sempre vence! 🏆"
-    )
-    return m
+    connector.connect()
+    character = connector.get_by_name("Monica Geller")
+    print(character)
+    connector.close()
+    return character
 
 
 @routes.get("/smellycat", response_model=Character, response_description="Esse endpoint retorna características da Phoebe", tags=["Phoebe"])
 def phoebe():
-    p = Character(
-        name="Phoebe Buffay",
-        age=32,
-        sex="Feminino",
-        ocupation="Massagista e musicista",
-        season=4,
-        joke="Smelly cat, smelly cat. What are they feeding you? Smelly cat, smelly cat… It’s not your fault. 🐱"
-    )
-    return p
+    connector.connect()
+    character = connector.get_by_name("Phoebe Buffay")
+    print(character)
+    connector.close()
+    return character
