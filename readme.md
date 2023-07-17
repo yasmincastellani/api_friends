@@ -2,7 +2,7 @@
 
 
 
-Este projeto utiliza Python3.11
+Este projeto utiliza Python3.11 e Sqlite3
 
 É aconselhável a utilização de um ambiente virtual Python. Para criar o ambiente virtual, rode o seguite comando:   
 
