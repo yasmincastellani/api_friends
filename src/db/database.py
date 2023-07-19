@@ -1,7 +1,6 @@
 import sqlite3
 from src.models.character import Character
 
-
 DATABASE = "friends.db"
 TABLE_NAME = "friends"
 
