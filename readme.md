@@ -25,4 +25,5 @@ python app.py
 
 A documentação pode ser acessada no endpoint "/docs"
 
+<!-- ![Documentação](doc_api.png) -->
 ![Documentação](doc_api.png)
