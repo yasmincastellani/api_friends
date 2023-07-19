@@ -19,7 +19,7 @@ def get_all():
 
 @routes.get("/character", response_model=Character,
             response_description="Esse endpoint retorna características de um personagem", tags=["Personagens"])
-def joey(character: str):
+def get_character(character: str):
     connector.connect()
     character = connector.get_by_name(character)
     print(character)
